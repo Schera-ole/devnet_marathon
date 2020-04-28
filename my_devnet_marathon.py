@@ -51,6 +51,7 @@ def cdp_handling(ssh):
 
 
 def ntp_handling(ssh):
+    #Обработка ntp
     ssh.send_config_set('clock timezone UTC 0 0')
     request = ssh.send_command('sh ntp status')
     if 'Clock is synchronized' in request:
@@ -66,6 +67,7 @@ def ntp_handling(ssh):
 
 
 def version_handling(ssh):
+    #Обработка sh ver
     request = ssh.send_command('sh ver')
     with open(template_sh_ver) as template:
         fsm = textfsm.TextFSM(template)
